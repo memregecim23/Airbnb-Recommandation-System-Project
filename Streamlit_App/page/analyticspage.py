@@ -1,4 +1,4 @@
-import streamlit as st
+import Streamlit_App as st
 import pandas as pd
 import plotly.express as px  # ileride kullanırsan dursun
 import numpy as np

@@ -1,4 +1,4 @@
-import streamlit as st
+import Streamlit_App as st
 
 #projemizin başlık kısmı
 st.title(":red[Air]bnb")

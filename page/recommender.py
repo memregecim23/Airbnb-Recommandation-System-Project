@@ -1,4 +1,4 @@
-import streamlit as st
+import Streamlit_App as st
 import pandas as pd
 import numpy as np
 import pydeck as pdk
