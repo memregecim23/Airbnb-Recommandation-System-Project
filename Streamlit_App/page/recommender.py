@@ -98,7 +98,7 @@ if lat_col is None or lon_col is None:
     st.stop()
 
 # ---------- Coğrafi + Tür Filtreleri ----------
-st.subheader("🔎 Filtreler")
+st.subheader("Filtreler")
 country_col = next((c for c in ["country", "Country", "COUNTRY"] if c in df.columns), None)
 city_col    = next((c for c in ["city", "City", "CITY"] if c in df.columns), None)
 neigh_col   = next((c for c in ["neighbourhood", "neighborhood", "neighbourhood_cleansed", "neighborhood_cleansed"] if c in df.columns), None)
@@ -133,7 +133,7 @@ if neigh_col:
     if sel_neighs:
         mask &= df[neigh_col].astype(str).isin(sel_neighs); any_filter_used=True
 
-# Oda & Mülk tipi (4)
+# Oda & Mülk tipi
 rt_col, pt_col = st.columns(2)
 if room_type_col:
     rt_opts = sorted(df[room_type_col].dropna().astype(str).unique().tolist())
@@ -150,7 +150,7 @@ if property_type_col:
 # ---------- Diğer Filtreler ----------
 HIDE_FROM_CHOOSER = {"name", "host_since", "listing_id", "id", "minimum_nights"}  # (6,21)
 
-# (19) filtre listesinden çıkarılacaklar + (23,24,25)
+# filtre listesinden çıkarılacaklar
 EXCLUDE_CANON = {
     "hosthasprofilepic", "hostidentityverified", "hostissuperhost", "hostissuperhostt",
     "reviewscorescheckin", "reviewscorescommunication", "reviewscoreslocation",
@@ -170,7 +170,7 @@ for c in df.columns:
         continue
     filterable_cols.append(c)
 
-# Başlangıçta hiçbir şey seçili olmasın (18)
+# Başlangıçta hiçbir şey seçili olmasın durumu.
 chosen_filters = st.multiselect("Diğer filtrelenecek sütunlar", options=sorted(filterable_cols), default=[])
 
 col1, col2 = st.columns(2)
@@ -178,7 +178,7 @@ for i, c in enumerate(chosen_filters):
     tgt = col1 if i % 2 == 0 else col2
     cn = canon_name(c)
 
-    # (29) instant_bookable → checkbox (seçiliyse=1)
+    #instant_bookable → checkbox (seçiliyse=1)
     if cn == "instantbookable":
         raw = df[c].astype(str).str.strip().str.lower()
         mapping = {"t":1,"true":1,"yes":1,"y":1,"1":1, "f":0,"false":0,"no":0,"n":0,"0":0}
@@ -188,7 +188,7 @@ for i, c in enumerate(chosen_filters):
         mask &= (s == (1 if chk else 0)); any_filter_used=True; other_filter_used=True
         continue
 
-    # -------- (1) Range slider'lar (etiketsiz açıklama) --------
+    #Range slider'lar
     if cn == "bedrooms":
         s = pd.to_numeric(df[c], errors="coerce").fillna(0).astype(int)
         lo, hi = tgt.slider(c, min_value=0, max_value=30, value=(0, 30), step=1)
@@ -215,9 +215,9 @@ for i, c in enumerate(chosen_filters):
         lo, hi = tgt.slider(c, min_value=pmin, max_value=pmax, value=(pmin, pmax), step=1)
         mask &= s_float.between(lo, hi); any_filter_used=True; other_filter_used=True
         continue
-    # -----------------------------------------------------------
+    
 
-    # (16,26) 0/1 kolonlar → Var/Yok
+    #0/1 kolonlar → Var/Yok
     if set(pd.to_numeric(df[c], errors="coerce").dropna().unique().tolist()).issubset({0,1}):
         s = pd.to_numeric(df[c], errors="coerce").fillna(0).astype(int)
         choice = tgt.radio(c, options=["Var", "Yok"], horizontal=True, index=0)
@@ -253,7 +253,7 @@ for i, c in enumerate(chosen_filters):
     if choice:
         mask &= df[c].astype(str).isin(choice); any_filter_used=True; other_filter_used=True
 
-# ---------- Filtrelerin altında GÖRÜNTÜLE butonu (2) ----------
+#Filtrelerin altında GÖRÜNTÜLE butonu
 if "recs_go" not in st.session_state:
     st.session_state["recs_go"] = False
 
@@ -292,7 +292,7 @@ with st.sidebar:
 
 tooltip_cols = list(dict.fromkeys(forced_tooltip_cols + hover_extra))
 
-# Mevki etiketi (city+neighbourhood) — sadece tooltip için birleştir
+# Mevki etiketi (city+neighbourhood) — sadece tooltip için birleştirmek için kullanılır.
 location_col_for_tooltip = None
 if (city_col or neigh_col):
     join_name = "__location_join__"
@@ -309,7 +309,7 @@ def build_tooltip_html(loc_col, hover_cols):
 
 tooltip_html = build_tooltip_html(location_col_for_tooltip, tooltip_cols)
 
-# ---------- Öneriler: custom_score top-5 (numaralı) ----------
+# ---------- Öneriler: custom_score top-5 ----------
 show_recs = False
 rec_df = pd.DataFrame()
 if "custom_score" in filtered.columns:
@@ -396,7 +396,7 @@ elif len(sel_cities) > 0:
 elif len(sel_countries) > 0:
     zoom = 6
 
-# "Evi görüntüle" tıklandıysa o ilana odakla
+# "Evi görüntüle" tıklandıysa o ilana odaklanır.
 if "focus_lat" in st.session_state and "focus_lon" in st.session_state:
     center_lat = st.session_state["focus_lat"]
     center_lon = st.session_state["focus_lon"]
@@ -432,7 +432,7 @@ layers = [
     )
 ]
 
-# Önerileri haritada mavi nokta + ortasında numara; highlight kapalı, ek halka yok (4)
+# Önerileri haritada mavi nokta + ortasında numara; highlight kapalı, ek halka yok.
 if show_recs:
     rec_map_cols = [lon_col, lat_col]
     if location_col_for_tooltip and location_col_for_tooltip in rec_df.columns:
