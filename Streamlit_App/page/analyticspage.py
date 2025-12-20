@@ -9,7 +9,7 @@ from pandas.api.types import is_object_dtype, is_numeric_dtype, is_datetime64_an
 st.set_page_config(page_title="Veriseti", layout="wide")
 st.title("Veriseti")
 
-# ------------------ OTURUM DURUMU ------------------
+#OTURUM DURUMU
 if "stage" not in st.session_state:
     # aşamalar: "filter" -> "line" -> "bar"
     st.session_state.stage = "filter"
@@ -18,7 +18,7 @@ if "line_drawn" not in st.session_state:
 if "file_sig" not in st.session_state:
     st.session_state.file_sig = None
 
-# ------------------ YÜKLEME: CSV veya ZIP ------------------
+#CSV veya ZIP yükleme
 st.subheader("Veri Yükleme")
 uploaded = st.file_uploader("CSV veya ZIP dosyası yükleyin", type=["csv", "zip"])
 
@@ -55,14 +55,14 @@ if not uploaded:
     st.info("Lütfen bir CSV veya ZIP dosyası yükleyin.")
     st.stop()
 
-# Dosya değiştiyse aşamaları sıfırla
+#Eğer dosya değiştiyse aşamalar sıfırlanır.
 file_sig = (uploaded.name, uploaded.size if hasattr(uploaded, "size") else len(uploaded.getvalue()))
 if file_sig != st.session_state.file_sig:
     st.session_state.stage = "filter"
     st.session_state.line_drawn = False
     st.session_state.file_sig = file_sig
 
-# Veri oku
+#Veriyi okuma
 try:
     df = read_uploaded(uploaded.name, uploaded.getvalue())
     st.success("Veri yüklendi.")
@@ -71,7 +71,7 @@ except Exception as e:
     st.error(f"Veri okunamadı: {e}")
     st.stop()
 
-# ------------------ METRİKLER ------------------
+#METRİKLER
 st.subheader("Metrikler")
 
 def mean_or_nan(frame: pd.DataFrame, col: str):
@@ -85,7 +85,7 @@ avg_rsa   = mean_or_nan(df, "review_scores_accuracy")
 avg_rsc   = mean_or_nan(df, "review_scores_cleanliness")
 avg_rsl   = mean_or_nan(df, "review_scores_location")
 
-# custom_score: varsa kullan; yoksa mevcut puan kolonlarının ortalamasıyla üret
+# custom_score: varsa kullanır; yoksa mevcut puan kolonlarının ortalamasıyla üretir
 score_candidates = [
     "review_scores_rating",
     "review_scores_accuracy",
@@ -115,7 +115,7 @@ col4.metric("avg_rsc",   fmt(avg_rsc, "RSC"))
 col5.metric("avg_rsl",   fmt(avg_rsl, "RSL"))
 col6.metric("avg_custom", fmt(avg_custom, "CS"))
 
-# ------------------ VERİ FİLTRELEME ------------------
+#VERİ FİLTRELEME
 st.subheader("Veri Filtreleme")
 
 columns = df.columns.tolist()
@@ -136,13 +136,13 @@ if selected_column and filter_value:
     except ValueError:
         st.warning("Girilen değer bu kolonun veri tipine dönüştürülemedi.")
 
-# Aşama ilerletme butonu: Filtrelemeyi bitirince Line Chart aç
+# Aşama ilerletme butonu: Filtrelemeyi bitirince Line Chart açmak için kullanılır.
 proceed_line = st.button("Line Chart", type="primary", use_container_width=True)
 if proceed_line:
     st.session_state.stage = "line"
     st.session_state.line_drawn = False  # line grafiği yeniden çizdirilsin
 
-# ------------------ LINE CHART (yalnızca stage >= line) ------------------
+#LINE CHART (yalnızca stage >= line)
 if st.session_state.stage in ("line", "bar"):
     st.subheader("Line Chart")
     columns = filtered_df.columns.tolist()
@@ -250,7 +250,7 @@ if st.session_state.stage in ("line", "bar"):
         if proceed_bar:
             st.session_state.stage = "bar"
 
-# ------------------ BAR CHART (yalnızca stage == bar) ------------------
+#BAR CHART (yalnızca stage == bar)
 if st.session_state.stage == "bar":
     st.subheader("Bar Chart")
     columns = filtered_df.columns.tolist()
