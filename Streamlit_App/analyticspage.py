@@ -1,4 +1,4 @@
-import Streamlit_App as st
+import streamlit as st
 import pandas as pd
 import plotly.express as px  # ileride kullanırsan dursun
 import numpy as np
@@ -345,3 +345,4 @@ if st.session_state.stage == "bar":
             .properties(height=360)
         )
         st.altair_chart(chart, use_container_width=True)
+
