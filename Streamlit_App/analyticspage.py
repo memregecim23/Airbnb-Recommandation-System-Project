@@ -346,3 +346,4 @@ if st.session_state.stage == "bar":
         )
         st.altair_chart(chart, use_container_width=True)
 
+
