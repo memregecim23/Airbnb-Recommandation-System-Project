@@ -1,4 +1,4 @@
-import Streamlit_App as st
+import streamlit as st
 
 #projemizin başlık kısmı
 st.title(":red[Air]bnb")
@@ -28,5 +28,6 @@ Neden Bizi Seçmelisiniz? Kişiselleştirilmiş Sonuçlar: Size en doğru eşle�
 right.image("https://www.markafikirleri.com/wp-content/uploads/2020/07/Airbnb-.jpeg", width=500)
 #right.image("image.py yada görselin linki", width=250)
 left.image("https://gucal.com.tr/images/blog/b-47b6e8a33f.jpg", width=300)
+
 
 
