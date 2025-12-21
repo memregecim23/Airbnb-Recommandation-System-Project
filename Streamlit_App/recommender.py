@@ -1,4 +1,4 @@
-import Streamlit_App as st
+import streamlit as st
 import pandas as pd
 import numpy as np
 import pydeck as pdk
@@ -477,3 +477,4 @@ deck = pdk.Deck(
 )
 
 st.pydeck_chart(deck, use_container_width=True)
+
