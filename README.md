@@ -3,10 +3,9 @@
 ![görsel 3](https://github.com/user-attachments/assets/032e99b7-dc26-4cff-9baa-62f1e340a2da)
 ![görsel 4](https://github.com/user-attachments/assets/53412041-d896-427b-9087-67ce1c7bea74)
 ![görsel 5](https://github.com/user-attachments/assets/1acf4ea9-f937-43c5-adb3-70893fb90258)
- Streamlit uyulamasının görsellerine burdan ulaşabilirsiniz.
  
  Not:Aşağıdaki linke tıklayarak canlı olarak demoyu deneyebilirsiniz.Link aynı zamanda about kısmında da bulunmaktadır.
- 
+ https://airbnbrecommandationproject.streamlit.app/
 
 
 # Airbnb Intelligent Recommendation System
