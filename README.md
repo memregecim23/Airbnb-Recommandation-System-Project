@@ -1,3 +1,14 @@
+![görsel 1](https://github.com/user-attachments/assets/2e4a6b0d-5b47-42a0-97d0-df5b20989cda)
+![görsel 2](https://github.com/user-attachments/assets/9aca1423-acc1-4a0d-ab31-d71d914cbee7)
+![görsel 3](https://github.com/user-attachments/assets/032e99b7-dc26-4cff-9baa-62f1e340a2da)
+![görsel 4](https://github.com/user-attachments/assets/53412041-d896-427b-9087-67ce1c7bea74)
+![görsel 5](https://github.com/user-attachments/assets/1acf4ea9-f937-43c5-adb3-70893fb90258)
+ Streamlit uyulamasının görsellerine burdan ulaşabilirsiniz.
+ 
+ Not:Aşağıdaki linke tıklayarak canlı olarak demoyu deneyebilirsiniz.Link aynı zamanda about kısmında da bulunmaktadır.
+ 
+
+
 # Airbnb Intelligent Recommendation System
 Bu proje, kullanıcıların kişisel tercihlerine göre en uygun Airbnb konaklama fırsatlarını bulmalarını sağlayan, veriye dayalı bir web uygulamasıdır. 
 İçerisinde veri analitiği paneli, interaktif harita görselleştirmesi ve özelleştirilmiş bir öneri motoru barındırır.
