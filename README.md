@@ -9,53 +9,60 @@
 
 
 # Airbnb Intelligent Recommendation System
-Bu proje, kullanıcıların kişisel tercihlerine göre en uygun Airbnb konaklama fırsatlarını bulmalarını sağlayan, veriye dayalı bir web uygulamasıdır. 
-İçerisinde veri analitiği paneli, interaktif harita görselleştirmesi ve özelleştirilmiş bir öneri motoru barındırır.
 
-# Proje Amacı ve İş Problemi
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
+![Framework](https://img.shields.io/badge/Framework-Streamlit-red)
+![Visualization](https://img.shields.io/badge/Visualization-PyDeck%20%7C%20Altair-orange)
+![Status](https://img.shields.io/badge/Status-Completed-success)
 
+## Proje Özeti
+Bu proje, kullanıcıların kişisel tercihlerine göre en uygun Airbnb konaklama fırsatlarını bulmalarını sağlayan, veriye dayalı bir web uygulamasıdır.
+
+İçerisinde **veri analitiği paneli**, **interaktif harita görselleştirmesi** ve özelleştirilmiş bir **öneri motoru** barındırır.
+
+## Proje Amacı ve İş Problemi
 Milyonlarca Airbnb ilanı arasında kullanıcıların bütçelerine, konum tercihlerine ve konfor beklentilerine (örneğin; "Manzara", "Jakuzi" vb.) en uygun evi bulması zaman alıcı bir süreçtir.
 
 Bu proje şunları hedefler:
-**Veri Analizi:** Airbnb veri setini yükleyerek fiyat, puanlama ve lokasyon bazlı içgörüler sunmak.
-**Akıllı Filtreleme:** Kullanıcı dostu arayüz ile ülke, şehir, mahalle ve özellik bazlı dinamik filtreleme sağlamak.
-**Görselleştirme:** İlanları interaktif bir harita üzerinde (PyDeck) göstermek ve yoğunluk analizi yapmak.
-**Öneri Sistemi:** Kullanıcı kriterlerine göre bir "Custom Score" hesaplayarak en iyi 5 alternatifi sıralamak.
+* **Veri Analizi:** Airbnb veri setini yükleyerek fiyat, puanlama ve lokasyon bazlı içgörüler sunmak.
+* **Akıllı Filtreleme:** Kullanıcı dostu arayüz ile ülke, şehir, mahalle ve özellik bazlı dinamik filtreleme sağlamak.
+* **Görselleştirme:** İlanları interaktif bir harita üzerinde (PyDeck) göstermek ve yoğunluk analizi yapmak.
+* **Öneri Sistemi:** Kullanıcı kriterlerine göre bir "Custom Score" hesaplayarak en iyi 5 alternatifi sıralamak.
 
-# Özellikler
+## Özellikler ve Modüller
 
-# Veri Analitiği Modülü (`analyticspage.py`)
-**Dinamik Veri Yükleme:** Kullanıcılar kendi `.csv` veya `.zip` dosyalarını yükleyebilir.
-**KPI Metrikleri:** Ortalama fiyat, temizlik puanı, doğruluk puanı gibi temel metriklerin anlık hesaplanması.
-**Gelişmiş Grafikler:**
-    * **Line Chart:** Zaman serisi veya sayısal dağılımlar için (Altair).
-    * **Bar Chart:** Kategorik karşılaştırmalar için ölçeklendirilebilir grafikler.
+### 1. Veri Analitiği Modülü (`analyticspage.py`)
+* **Dinamik Veri Yükleme:** Kullanıcılar kendi `.csv` veya `.zip` dosyalarını sisteme yükleyebilir.
+* **KPI Metrikleri:** Ortalama fiyat, temizlik puanı, doğruluk puanı gibi temel metriklerin anlık hesaplanması.
+* **Gelişmiş Grafikler:**
+    * *Line Chart (Altair):* Zaman serisi veya sayısal dağılımlar.
+    * *Bar Chart:* Kategorik karşılaştırmalar için ölçeklendirilebilir grafikler.
 
-# Harita ve Öneri Modülü (`recommender.py`)
-**Coğrafi Filtreleme:** Ülke > Şehir > Mahalle hiyerarşisinde birbirine bağlı filtreler.
-**PyDeck Entegrasyonu:** İlanların konumlarını interaktif, zoom yapılabilir bir harita üzerinde kümelenmiş (clustered) veya tekil olarak gösterme.
-**Detaylı Filtreler:** Oda tipi, fiyat aralığı, yatak sayısı ve özel olanaklar (Amenities) için slider ve checkbox desteği.
-**En İyi 5 Öneri:** Seçilen kriterlere göre hesaplanan skora göre en iyi 5 evi kartlar halinde listeler ve harita üzerinde vurgular ("Focus" özelliği).
+### 2. Harita ve Öneri Modülü (`recommender.py`)
+* **Coğrafi Filtreleme:** Ülke > Şehir > Mahalle hiyerarşisinde birbirine bağlı (dependent) filtreler.
+* **PyDeck Entegrasyonu:** İlanların konumlarını interaktif, zoom yapılabilir bir harita üzerinde kümelenmiş (clustered) veya tekil olarak gösterme.
+* **Detaylı Filtreler:** Oda tipi, fiyat aralığı, yatak sayısı ve özel olanaklar (Amenities) için slider ve checkbox desteği.
+* **En İyi 5 Öneri:** Seçilen kriterlere göre hesaplanan skora göre en iyi 5 evi kartlar halinde listeler ve harita üzerinde vurgular ("Focus" özelliği).
 
-# Veri Ön İşleme (`recommandation_system.py`)
-Bu proje, ham veriyi işlemek için güçlü bir arka plan algoritması kullanır:
-**Kur Dönüşümü:** Farklı ülkelerdeki fiyatları (MXN, THB, TRY vb.) tek bir para birimine endeksleyerek normalize etme.
-**Eksik Veri (Missing Value) Yönetimi:**
+### 3. Veri Ön İşleme (`recommandation_system.py`)
+Proje, ham veriyi işlemek için güçlü bir arka plan algoritması kullanır:
+* **Kur Dönüşümü:** Farklı ülkelerdeki fiyatları (MXN, THB, TRY vb.) tek bir para birimine endeksleyerek normalize etme.
+* **Eksik Veri (Missing Value) Yönetimi:**
     * "Studio" dairelerdeki yatak odası sayısını metin madenciliği ile düzeltme.
     * Eksik puanları KNN Imputer veya ortalama ile doldurma.
-**Feature Engineering:** İlan açıklamalarından (Amenities) en popüler 20 özelliği (Wi-Fi, Havuz, Klima vb.) çıkarıp Binary değişkenlere dönüştürme.
+* **Feature Engineering:** İlan açıklamalarından (Amenities) en popüler 20 özelliği (Wi-Fi, Havuz, Klima vb.) çıkarıp Binary (0/1) değişkenlere dönüştürme.
 
-# Kurulum ve Çalıştırma
+## Kurulum ve Çalıştırma
 
 Projeyi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyin:
 
-**Repoyu klonlayın:**
+1.  **Repoyu klonlayın:**
     ```bash
     git clone [https://github.com/kullaniciadi/airbnb-recommender.git](https://github.com/kullaniciadi/airbnb-recommender.git)
     cd airbnb-recommender
     ```
 
-**Sanal ortam oluşturun (Önerilen):**
+2.  **Sanal ortam oluşturun (Önerilen):**
     ```bash
     python -m venv .venv
     # Windows için:
@@ -64,30 +71,25 @@ Projeyi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyin:
     source .venv/bin/activate
     ```
 
-**Gerekli kütüphaneleri yükleyin:**
+3.  **Gerekli kütüphaneleri yükleyin:**
     ```bash
     pip install -r requirements.txt
     ```
 
-**Uygulamayı başlatın:**
+4.  **Uygulamayı başlatın:**
     ```bash
     streamlit run main.py
     ```
 
-# Proje Yapısı
+## Proje Yapısı
 
 ```text
-├── main.py                     # Uygulama giriş noktası ve navigasyon
+├── main.py                   # Uygulama giriş noktası ve navigasyon
 ├── page/
-│   ├── homepage.py             # Karşılama ve tanıtım sayfası
-│   ├── analyticspage.py        # Veri analizi ve grafik oluşturma sayfası
-│   └── recommender.py          # Harita ve öneri sistemi sayfası
-├── recommandation_system.py    # Veri temizleme, EDA ve ML hazırlık scripti
-├── Streamlit_App.py            # (Varsa) Custom Streamlit bileşenleri
-├── requirements.txt            # Kütüphane bağımlılıkları
-└── README.md                   # Proje dokümantasyonu
-
-** Not: Proje yapısı page sayfası oluşturulmadan da kullanılabilir gerekli dosyaların aynı klasöre olması yeterlidir.Aynı şeklide streamlit ile ayağa kaldırmak için main.py
-çalıştırılır. **
-
- **Geliştiriciler : Benimde içinde bulunduğum bir ekiple beraber yazılmıştır.**
+│   ├── homepage.py           # Karşılama ve tanıtım sayfası
+│   ├── analyticspage.py      # Veri analizi ve grafik oluşturma sayfası
+│   └── recommender.py        # Harita ve öneri sistemi sayfası
+├── recommandation_system.py  # Veri temizleme, EDA ve ML hazırlık scripti
+├── Streamlit_App.py          # Custom Streamlit bileşenleri
+├── requirements.txt          # Kütüphane bağımlılıkları
+└── README.md                 # Proje dokümantasyonu
