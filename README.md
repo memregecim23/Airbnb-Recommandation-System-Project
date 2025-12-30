@@ -4,7 +4,7 @@
 ![görsel 4](https://github.com/user-attachments/assets/53412041-d896-427b-9087-67ce1c7bea74)
 ![görsel 5](https://github.com/user-attachments/assets/1acf4ea9-f937-43c5-adb3-70893fb90258)
  
- Not:Aşağıdaki linke tıklayarak canlı olarak demoyu deneyebilirsiniz.Link aynı zamanda about kısmında da bulunmaktadır.
+ Not:Aşağıdaki linke tıklayarak canlı olarak demoyu deneyebilirsiniz.Link aynı zamanda about kısmında da bulunmaktadır.Uygulama için csv reponun içindedir!!!
  https://airbnbrecommandationproject.streamlit.app/
 
 
